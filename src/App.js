@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+import { Heading } from '@chakra-ui/react';
 import './App.css';
 import TicketShedule from './TicketShedule';
 import { ChakraProvider } from '@chakra-ui/react';
