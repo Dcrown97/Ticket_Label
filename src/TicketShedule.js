@@ -1,10 +1,10 @@
-import { Box, Table, TableCaption, Tbody, Td, Tfoot, Th, Thead, Tr } from '@chakra-ui/react'
+import { Box, Container, Table, TableCaption, Tbody, Td, Tfoot, Th, Thead, Tr } from '@chakra-ui/react'
 import React from 'react'
 
 function TicketShedule() {
     return (
-        <Box>
-            <Table m='50px'>
+        <Container>
+            <Table mt='20px'>
                 <Thead>
                     <Tr>
                         <Th>Reception</Th>
@@ -38,7 +38,7 @@ function TicketShedule() {
                     </Tr>
                 </Tbody>
             </Table>
-        </Box>
+        </Container>
     )
 }
 
