@@ -5,20 +5,20 @@ function TicketShedule() {
 
     const [tickets, setTickets] = React.useState([])
 
-    const getTickets = async () => {
-       await  fetch('http://192.168.0.153:9000/api/mails')
+    const getTickets = () => {
+   
+        fetch('http://192.168.0.153:9000/api/mails')
             .then(response => response.json())
             .then(data => {
                 setTickets(data)
-                console.log('data',tickets)
+                console.log('data', data)
             })
+  
     }
-
-    //call endpoint every 30 seconds
-    setInterval(getTickets, 30000)
-
     React.useEffect(() => {
         getTickets()
+    //call endpoint every 30 seconds
+    setInterval(getTickets, 30000)
     }, [])
 
     return (
