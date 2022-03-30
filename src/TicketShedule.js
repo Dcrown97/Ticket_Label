@@ -7,7 +7,7 @@ function TicketShedule() {
 
     const getTickets = () => {
    
-        fetch('http://192.168.0.153:9000/api/mails')
+        fetch('http://192.168.1.100:9000/api/mails')
             .then(response => response.json())
             .then(data => {
                 setTickets(data)
