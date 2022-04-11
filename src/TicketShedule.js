@@ -1,57 +1,82 @@
-import { Box, Container, Table, TableCaption, Tbody, Td, Tfoot, Th, Thead, Tr, Text } from '@chakra-ui/react'
+import { Box, Container, Table, TableCaption, Tbody, Td, Tfoot, Th, Thead, Tr, Text, HStack, Divider, Stack } from '@chakra-ui/react'
 import React from 'react'
 
 function TicketShedule() {
 
-    const [tickets, setTickets] = React.useState([])
+    const [billings, setBillings] = React.useState([])
+    const [pharmacy, setPharmacy] = React.useState([])
+    const [reception, setReception] = React.useState([])
 
     const getTickets = () => {
-   
-        fetch('http://192.168.1.100:9000/api/mails')
+
+        fetch('http://127.0.0.1:9000/api/mails')
             .then(response => response.json())
             .then(data => {
-                setTickets(data)
+                setBillings(data.billings)
+                setPharmacy(data.pharmacies)
+                setReception(data.receptions)
                 console.log('data', data)
             })
-  
+
     }
     React.useEffect(() => {
         getTickets()
-    //call endpoint every 30 seconds
-    setInterval(getTickets, 30000)
+        //call endpoint every 30 seconds
+        setInterval(getTickets, 30000)
     }, [])
 
     return (
 
-      <Container>
-            <Table variant='striped' colorScheme='teal'>
-                <Thead>
-                    <Tr>
-                        <Th>Reception</Th>
-                        <Th>Billing</Th>
-                        <Th>Synlab</Th>
-                        <Th>Vital</Th>
-                        <Th>Pharmacy</Th>
-                    </Tr>
-                </Thead>
-                <Tbody>
-                   
-                   {
-                          tickets?.mails?.map(item => {
+        <Container>
+            <Stack spacing='10px' direction={'row'}>
+                <Box w='20%' bg='yellow.200'>
+                    <Text> Billing</Text>
+                    <Divider></Divider>
+                    {
+                        billings.map((billing, index) => {
                             return (
-                                <Tr key={item.id}>
-                                    <Td>{item.reception}</Td>
-                                    <Td>{item.billing}</Td>
-                                    <Td>{item.synlab}</Td>
-                                    <Td>{item.vital}</Td>
-                                    <Td>{item.pharmacy}</Td>
-                                </Tr>
+                                <Box key={index}>
+                                    <Text>{billing.billing}</Text>
+                                    <Divider></Divider>
+                                </Box>
                             )
                         })
-                   }
-                </Tbody>
-            </Table>
-      </Container>
+                    }
+                </Box>
+                <Box w='20%' bg='tomato'>
+                    <Text> Pharmacy</Text>
+                    <Divider></Divider>
+                    {
+                        pharmacy.map((pharmacy, index) => {
+                            return (
+                                <Box key={index}>
+                                    <Text>{pharmacy.pharmacy}</Text>
+                                    <Divider></Divider>
+                                </Box>
+                            )
+                        })
+                    }
+                </Box>
+                <Box w='20%' bg='pink.100'>
+                    <Text> Reception</Text>
+                    {
+                        reception.map((reception, index) => {
+                            return (
+                                <Box key={index}>
+                                    <Text>{reception.reception}</Text>
+                                </Box>
+                            )
+                        })
+                    }
+                </Box>
+                <Box w='20%' bg='pink.100'>
+                    <Text>Synlabs</Text>
+                </Box>
+                <Box w='20%' bg='pink.100'>
+                    <Text>Vitals</Text>
+                </Box>
+            </Stack>
+        </Container>
     )
 }
 
