@@ -16,6 +16,7 @@ function TicketShedule() {
         synlab: "",
         vital: ""
     })
+    const [error, setError] = React.useState('')
 
     const getTickets = () => {
 
@@ -38,28 +39,34 @@ function TicketShedule() {
     }
 
     const handleClick = () => {
-        setShow(false)
-        console.log('queue', queue)
+        if (queue.billing == '' && queue.pharmacy == '' && queue.reception == '' && queue.synlab == '' && queue.vital == '') {
+            setError('Please fill the form')
+            return
+        } else {
+            setShow(false)
+            console.log('queue', queue)
 
-        var myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/json");
+            var myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/json");
 
-        var requestOptions = {
-            method: 'POST',
-            headers: myHeaders,
-            body: JSON.stringify(queue),
-        };
-        console.log(requestOptions, "requestoptions")
-        fetch("http://13.69.79.35/bluecoatmail/public/index.php/api/add", requestOptions)
-            .then(response => response.json())
-            .then(result => {
-                console.log('result', result)
+            var requestOptions = {
+                method: 'POST',
+                headers: myHeaders,
+                body: JSON.stringify(queue),
+            };
+            console.log(requestOptions, "requestoptions")
+            fetch("http://13.69.79.35/bluecoatmail/public/index.php/api/add", requestOptions)
+                .then(response => response.json())
+                .then(result => {
+                    console.log('result', result)
 
-            })
-            .catch(error => {
-                console.log('error', error)
+                })
+                .catch(error => {
+                    console.log('error', error)
 
-            });
+                });
+            setQueue('')
+        }
     }
 
     const handleBack = () => {
@@ -74,18 +81,20 @@ function TicketShedule() {
         setShow(true)
         getTickets()
         //call endpoint every 30 seconds
-        setInterval(getTickets, 30000)
+        setInterval(getTickets, 10000)
     }, [])
 
     return (
 
         <>
-
-
+            
             {
                 show ?
                     <Center>
                         <Stack spacing='20px' mt='40px' p='20px'>
+                            <Text color={'red'}>
+                                {error}
+                            </Text>
                             <FormControl>
                                 <FormLabel htmlFor='billing'>Billing</FormLabel>
                                 <Input id='billing' value={queue.billing} onChange={handleChange} type='billing' />
@@ -114,7 +123,7 @@ function TicketShedule() {
                                     billings.map((billing, index) => {
                                         return (
                                             <Box key={index}>
-                                                <Text fontWeight={'bold'}>{billing.billing == null ? '' : billing.billing}</Text>
+                                                <Text fontWeight={'bold'}>{billing.billing === '' ? '' : billing.billing}</Text>
                                                 <Divider></Divider>
                                             </Box>
                                         )
