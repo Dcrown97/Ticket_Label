@@ -122,7 +122,7 @@ function TicketShedule() {
                                 </HStack>
                                 <Divider></Divider>
                                 {
-                                    reception.map((reception, index) => {
+                                    reception?.map((reception, index) => {
                                         return (
                                             <Box key={index} display='flex' flexDirection={'column'} justifyContent='center' alignItems={'center'} background='white' >
                                                 <Text fontWeight={'bold'}>{reception.reception}</Text>
@@ -138,7 +138,7 @@ function TicketShedule() {
                                 </HStack>
                                 <Divider></Divider>
                                 {
-                                    billings.map((billing, index) => {
+                                    billings?.map((billing, index) => {
                                         return (
                                             <Box key={index} display='flex' flexDirection={'column'} justifyContent='center' alignItems={'center'} background='white'>
                                                 <Text fontWeight={'bold'}>{billing.billing === '' ? '' : billing.billing}</Text>
@@ -154,7 +154,7 @@ function TicketShedule() {
                                 </HStack>
                                 <Divider></Divider>
                                 {
-                                    pharmacy.map((pharmacy, index) => {
+                                    pharmacy?.map((pharmacy, index) => {
                                         return (
                                             <Box key={index} display='flex' flexDirection={'column'} justifyContent='center' alignItems={'center'} background='white' >
                                                 <Text fontWeight={'bold'}>{pharmacy.pharmacy}</Text>
@@ -170,7 +170,7 @@ function TicketShedule() {
                                 </HStack>
                                 <Divider></Divider>
                                 {
-                                    synlabs.map((synlab, index) => {
+                                    synlabs?.map((synlab, index) => {
                                         return (
                                             <Box key={index} display='flex' flexDirection={'column'} justifyContent='center' alignItems={'center'} background='white'  >
                                                 <Text fontWeight={'bold'}>{synlab.synlab}</Text>
@@ -186,7 +186,7 @@ function TicketShedule() {
                                 </HStack>
                                 <Divider></Divider>
                                 {
-                                    vitals.map((vital, index) => {
+                                    vitals?.map((vital, index) => {
                                         return (
                                             <Box key={index} display='flex' flexDirection={'column'} justifyContent='center' alignItems={'center'} background='white' >
                                                 <Text fontWeight={'bold'}>{vital.vital}</Text>
