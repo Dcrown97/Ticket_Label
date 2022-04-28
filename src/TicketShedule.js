@@ -1,4 +1,4 @@
-import { Box, Text, Divider, Stack, Heading, Center, FormControl, FormLabel, Input, Button } from '@chakra-ui/react'
+import { Box, Text, Divider, Stack, Heading, Center, FormControl, FormLabel, Input, Button, HStack } from '@chakra-ui/react'
 import React from 'react'
 
 function TicketShedule() {
@@ -87,7 +87,7 @@ function TicketShedule() {
     return (
 
         <>
-            
+
             {
                 show ?
                     <Center>
@@ -115,42 +115,16 @@ function TicketShedule() {
                     :
 
                     <Center>
-                        <Stack spacing='20px' direction={'row'} bg='lightgreen' mt='40px' p='20px'>
+                        <Stack spacing='20px' direction={'row'} bg='lightgreen' mt='40px' p='20px' display={{ base: 'flex', md: '' }} flexDirection={{ base: 'column', md: 'row' }} >
+
                             <Box>
-                                <Heading> Billing</Heading>
-                                <Divider></Divider>
-                                {
-                                    billings.map((billing, index) => {
-                                        return (
-                                            <Box key={index}>
-                                                <Text fontWeight={'bold'}>{billing.billing === '' ? '' : billing.billing}</Text>
-                                                <Divider></Divider>
-                                            </Box>
-                                        )
-                                    })
-                                }
-                            </Box>
-                            <Box>
-                                <Heading> Pharmacy</Heading>
-                                <Divider></Divider>
-                                {
-                                    pharmacy.map((pharmacy, index) => {
-                                        return (
-                                            <Box key={index}>
-                                                <Text fontWeight={'bold'}>{pharmacy.pharmacy}</Text>
-                                                <Divider></Divider>
-                                            </Box>
-                                        )
-                                    })
-                                }
-                            </Box>
-                            <Box>
-                                <Heading> Reception</Heading>
+                                <HStack background='blue' width={'200px'} display='flex' flexDirection={'column'} justifyContent='center' alignItems={'center'}>  <Heading textTransform={'uppercase'} size={'md'} > Reception</Heading>
+                                </HStack>
                                 <Divider></Divider>
                                 {
                                     reception.map((reception, index) => {
                                         return (
-                                            <Box key={index}>
+                                            <Box key={index} display='flex' flexDirection={'column'} justifyContent='center' alignItems={'center'} background='white' >
                                                 <Text fontWeight={'bold'}>{reception.reception}</Text>
                                                 <Divider></Divider>
                                             </Box>
@@ -158,13 +132,47 @@ function TicketShedule() {
                                     })
                                 }
                             </Box>
+
                             <Box>
-                                <Heading>Synlabs</Heading>
+                                <HStack background='pink.600' width={'200px'} display='flex' flexDirection={'column'} justifyContent='center' alignItems={'center'}>  <Heading textTransform={'uppercase'} size={'md'} > Billing</Heading>
+                                </HStack>
+                                <Divider></Divider>
+                                {
+                                    billings.map((billing, index) => {
+                                        return (
+                                            <Box key={index} display='flex' flexDirection={'column'} justifyContent='center' alignItems={'center'} background='white'>
+                                                <Text fontWeight={'bold'}>{billing.billing === '' ? '' : billing.billing}</Text>
+                                                <Divider></Divider>
+                                            </Box>
+                                        )
+                                    })
+                                }
+                            </Box>
+
+                            <Box>
+                                <HStack background='yellow.400' width={'200px'} display='flex' flexDirection={'column'} justifyContent='center' alignItems={'center'}>  <Heading textTransform={'uppercase'} size={'md'} > Pharmacy</Heading>
+                                </HStack>
+                                <Divider></Divider>
+                                {
+                                    pharmacy.map((pharmacy, index) => {
+                                        return (
+                                            <Box key={index} display='flex' flexDirection={'column'} justifyContent='center' alignItems={'center'} background='white' >
+                                                <Text fontWeight={'bold'}>{pharmacy.pharmacy}</Text>
+                                                <Divider></Divider>
+                                            </Box>
+                                        )
+                                    })
+                                }
+                            </Box>
+
+                            <Box>
+                                <HStack background='green.400' width={'200px'} display='flex' flexDirection={'column'} justifyContent='center' alignItems={'center'}>  <Heading textTransform={'uppercase'} size={'md'} > Synlab</Heading>
+                                </HStack>
                                 <Divider></Divider>
                                 {
                                     synlabs.map((synlab, index) => {
                                         return (
-                                            <Box key={index}>
+                                            <Box key={index} display='flex' flexDirection={'column'} justifyContent='center' alignItems={'center'} background='white'  >
                                                 <Text fontWeight={'bold'}>{synlab.synlab}</Text>
                                                 <Divider></Divider>
                                             </Box>
@@ -172,13 +180,15 @@ function TicketShedule() {
                                     })
                                 }
                             </Box>
+
                             <Box>
-                                <Heading>Vitals</Heading>
+                                <HStack background='orange.500' width={'200px'} display='flex' flexDirection={'column'} justifyContent='center' alignItems={'center'}>  <Heading textTransform={'uppercase'} size={'md'} > vital</Heading>
+                                </HStack>
                                 <Divider></Divider>
                                 {
                                     vitals.map((vital, index) => {
                                         return (
-                                            <Box key={index}>
+                                            <Box key={index} display='flex' flexDirection={'column'} justifyContent='center' alignItems={'center'} background='white' >
                                                 <Text fontWeight={'bold'}>{vital.vital}</Text>
                                                 <Divider></Divider>
                                             </Box>
@@ -186,6 +196,7 @@ function TicketShedule() {
                                     })
                                 }
                             </Box>
+                            
                             <Button colorScheme='blue' onClick={handleBack}>Back</Button>
                         </Stack>
 
