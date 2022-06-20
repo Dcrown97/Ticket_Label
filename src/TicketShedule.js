@@ -20,7 +20,7 @@ function TicketShedule() {
 
     const getTickets = () => {
 
-        fetch('http://13.69.79.35/bluecoatmail/public/index.php/api/mails')
+        fetch('http://127.0.0.1:8000/api/mails')
             .then(response => response.json())
             .then(data => {
                 setBillings(data.billings)
@@ -125,7 +125,7 @@ function TicketShedule() {
                                     reception?.map((reception, index) => {
                                         return (
                                             <Box key={index} display='flex' flexDirection={'column'} justifyContent='center' alignItems={'center'} background='white' >
-                                                <Text fontWeight={'bold'}>{reception.reception}</Text>
+                                                <Text fontWeight={'bold'}>{reception.system_id}</Text>
                                                 <Divider></Divider>
                                             </Box>
                                         )
@@ -157,7 +157,7 @@ function TicketShedule() {
                                     pharmacy?.map((pharmacy, index) => {
                                         return (
                                             <Box key={index} display='flex' flexDirection={'column'} justifyContent='center' alignItems={'center'} background='white' >
-                                                <Text fontWeight={'bold'}>{pharmacy.pharmacy}</Text>
+                                                <Text fontWeight={'bold'}>{pharmacy.system_id}</Text>
                                                 <Divider></Divider>
                                             </Box>
                                         )
