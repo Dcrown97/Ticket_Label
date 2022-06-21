@@ -80,7 +80,7 @@ function TicketShedule() {
     React.useEffect(() => {
         setShow(true)
         getTickets()
-        //call endpoint every 30 seconds
+        //call endpoint every 10 seconds
         setInterval(getTickets, 10000)
     }, [])
 
@@ -89,36 +89,36 @@ function TicketShedule() {
         <>
 
             {
-                show ?
-                    <Center>
-                        <Stack spacing='20px' mt='40px' p='20px'>
-                            <Text color={'red'}>
-                                {error}
-                            </Text>
-                            <FormControl>
-                                <FormLabel htmlFor='billing'>Billing</FormLabel>
-                                <Input id='billing' value={queue.billing} onChange={handleChange} type='billing' />
-                                <FormLabel htmlFor='pharmacy'>Pharmacy</FormLabel>
-                                <Input id='pharmacy' value={queue.pharmacy} onChange={handleChange} type='pharmacy' />
-                                <FormLabel htmlFor='reception'>Reception</FormLabel>
-                                <Input id='reception' value={queue.reception} onChange={handleChange} type='reception' />
-                                <FormLabel htmlFor='synlab'>Synlabs</FormLabel>
-                                <Input id='synlab' value={queue.synlab} onChange={handleChange} type='synlabs' />
-                                <FormLabel htmlFor='vital'>Vitals</FormLabel>
-                                <Input id='vital' value={queue.vital} onChange={handleChange} type='vitals' />
-                            </FormControl>
-                            <Button colorScheme='blue' onClick={handleClick}>Submit</Button>
-                            <Button colorScheme='blue' onClick={handleView}>View Queue</Button>
-                        </Stack>
-                    </Center>
+                // show ?
+                //     <Center>
+                //         <Stack spacing='20px' mt='40px' p='20px'>
+                //             <Text color={'red'}>
+                //                 {error}
+                //             </Text>
+                //             <FormControl>
+                //                 <FormLabel htmlFor='billing'>Billing</FormLabel>
+                //                 <Input id='billing' value={queue.billing} onChange={handleChange} type='billing' />
+                //                 <FormLabel htmlFor='pharmacy'>Pharmacy</FormLabel>
+                //                 <Input id='pharmacy' value={queue.pharmacy} onChange={handleChange} type='pharmacy' />
+                //                 <FormLabel htmlFor='reception'>Reception</FormLabel>
+                //                 <Input id='reception' value={queue.reception} onChange={handleChange} type='reception' />
+                //                 <FormLabel htmlFor='synlab'>Synlabs</FormLabel>
+                //                 <Input id='synlab' value={queue.synlab} onChange={handleChange} type='synlabs' />
+                //                 <FormLabel htmlFor='vital'>Vitals</FormLabel>
+                //                 <Input id='vital' value={queue.vital} onChange={handleChange} type='vitals' />
+                //             </FormControl>
+                //             <Button colorScheme='blue' onClick={handleClick}>Submit</Button>
+                //             <Button colorScheme='blue' onClick={handleView}>View Queue</Button>
+                //         </Stack>
+                //     </Center>
 
-                    :
+                //     :
 
                     <Center>
                         <Stack spacing='20px' direction={'row'} bg='lightgreen' mt='40px' p='20px' display={{ base: 'flex', md: '' }} flexDirection={{ base: 'column', md: 'row' }} >
 
-                            <Box>
-                                <HStack background='blue' width={'200px'} display='flex' flexDirection={'column'} justifyContent='center' alignItems={'center'}>  <Heading textTransform={'uppercase'} size={'md'} > Reception</Heading>
+                        <Box m={{base: 'auto', md: ''}}>
+                                <HStack background='blue' width={'200px'} display='flex' flexDirection={'column'}>  <Heading textTransform={'uppercase'} size={'md'} > Reception</Heading>
                                 </HStack>
                                 <Divider></Divider>
                                 {
@@ -141,7 +141,7 @@ function TicketShedule() {
                                     billings?.map((billing, index) => {
                                         return (
                                             <Box key={index} display='flex' flexDirection={'column'} justifyContent='center' alignItems={'center'} background='white'>
-                                                <Text fontWeight={'bold'}>{billing.billing === '' ? '' : billing.billing}</Text>
+                                                <Text fontWeight={'bold'}>{billing.system_id}</Text>
                                                 <Divider></Divider>
                                             </Box>
                                         )
@@ -173,7 +173,7 @@ function TicketShedule() {
                                     synlabs?.map((synlab, index) => {
                                         return (
                                             <Box key={index} display='flex' flexDirection={'column'} justifyContent='center' alignItems={'center'} background='white'  >
-                                                <Text fontWeight={'bold'}>{synlab.synlab}</Text>
+                                                <Text fontWeight={'bold'}>{synlab.system_id}</Text>
                                                 <Divider></Divider>
                                             </Box>
                                         )
@@ -189,7 +189,7 @@ function TicketShedule() {
                                     vitals?.map((vital, index) => {
                                         return (
                                             <Box key={index} display='flex' flexDirection={'column'} justifyContent='center' alignItems={'center'} background='white' >
-                                                <Text fontWeight={'bold'}>{vital.vital}</Text>
+                                                <Text fontWeight={'bold'}>{vital.system_id}</Text>
                                                 <Divider></Divider>
                                             </Box>
                                         )
@@ -197,7 +197,7 @@ function TicketShedule() {
                                 }
                             </Box>
                             
-                            <Button colorScheme='blue' onClick={handleBack}>Back</Button>
+                            {/* <Button colorScheme='blue' onClick={handleBack}>Back</Button> */}
                         </Stack>
 
                     </Center>
